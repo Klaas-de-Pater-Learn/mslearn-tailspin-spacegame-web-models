@@ -35,15 +35,10 @@ steps:
     minorVersion: '0'
     patchVersion: '0'
 
-- task: NuGetInstaller@0
-  inputs:
-    solution: '**/*.sln'
-    nuGetVersion: 'custom'
-
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   displayName: 'Publish NuGet package'
   inputs:
-    command: push
-    feedPublish: '$(System.TeamProject)/Tailspin.SpaceGame.Web.Models.2023'
-    allowPackageConflicts: true
+    command: 'push'
+    nuGetFeedType: internal
+    publishVstsFeed: '$(System.TeamProject)/Tailspin.SpaceGame.Web.Models.2023'
   condition: succeeded()
