@@ -34,7 +34,14 @@ steps:
     majorVersion: '1'
     minorVersion: '0'
     patchVersion: '0'
- 
+
+- task: NuGetInstaller@0
+  inputs:
+    solution: '**/*.sln'
+    restoreMode: 'install'
+    noCache: true
+    nuGetVersion: '3.3.0'
+
 - task: NuGetCommand@2
   displayName: 'Publish NuGet package'
   inputs:
